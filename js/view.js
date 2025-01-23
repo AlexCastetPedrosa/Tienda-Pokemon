@@ -46,13 +46,17 @@ async function printOneCharacter(pokemon, dom) {
     img.src = shiny ? dataPokemon.sprites.front_shiny : dataPokemon.sprites.front_default;
     img.alt = dataPokemon.name
     const types = document.createElement('div') 
-        const figureType = document.createElement('figure');
+    const figureType = document.createElement('figure');
+    for (let type of dataPokemon.types) {
+        
         const imgType = document.createElement('img');
-        let dataType = await getApiInfo(dataPokemon.types[0].type.url)
+        let dataType = await getApiInfo(type.type.url)
         imgType.src = dataType.sprites['generation-vi']['x-y'].name_icon;
         imgType.alt = dataType.name;
     figureType.appendChild(imgType);
-    types.appendChild(figureType);
+    
+    }   
+    types.appendChild(figureType);    
     const h3 = document.createElement('h3');
     h3.textContent = dataPokemon.name;
 
