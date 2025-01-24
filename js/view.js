@@ -79,12 +79,18 @@ function CapturePokemon(event){
     let articlePadre = boton.parentNode;
     carrito.appendChild(articlePadre);
     boton.textContent = 'Cancelar'
+    boton.removeEventListener('click', CapturePokemon)
     boton.addEventListener('click', BorrarCompra)
+    console.log('hola')
+    alert('Has atrapado un Pokemon');
 }
 //Funcion para cancelar captura y devolver el pokemon
 function BorrarCompra(event){
     event.target.textContent = event.target.dataset.Pokeballs
     sectionGrid.appendChild(event.target.parentNode);
+    alert('Has liberado un Pokemon');
+    event.target.removeEventListener('click', BorrarCompra)
+    event.target.addEventListener('click', CapturePokemon)
 }
 //Pintar todos los pokemon y reset del dom
 function printAllCharacters(list, dom) {
